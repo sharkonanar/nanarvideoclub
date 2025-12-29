@@ -21,7 +21,7 @@ window.addEventListener('load', function() {
                 <div style="background: #1a1a1a; border: 2px solid white; border-radius: 10px; overflow: hidden; height: 250px;">
                     <a href="video.html?id=${film.id}" style="display: flex; text-decoration: none; color: white; height: 100%;">
                         
-                        <div style="width: 200px; flex-shrink: 0;">
+                        <div style="width: 150px; flex-shrink: 0;">
                             <img src="${film.image}" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         
