@@ -1,43 +1,65 @@
-const videos = [
-    { id: "1", titre: "Hitman le Cobra", resume: "Un nanar culte.", image: "images/hitman.jpg", note: 5 },
-    { id: "2", titre: "Sharknado", resume: "Des requins dans une tornade.", image: "images/shark.jpg", note: 4 }
-    // Ajoute tes autres vidéos ici...
-];
-
+// CONFIGURATION
+const filmsParPage = 8;
 let pageActuelle = 1;
-const videosParPage = 20;
 
-function afficherVideos() {
-    const grid = document.getElementById('video-grid');
-    if (!grid) return;
-    grid.innerHTML = ""; 
+function afficherFilms() {
+    const grille = document.getElementById('video-grid');
+    const pageInfo = document.getElementById('page-info');
 
-    const debut = (pageActuelle - 1) * videosParPage;
-    const fin = debut + videosParPage;
-    const selection = videos.slice(debut, fin);
+    // Sécurité : on vérifie que la grille et les données existent
+    if (!grille || typeof videos === 'undefined') return;
 
-    selection.forEach(video => {
-        let requins = "🦈".repeat(video.note || 0); 
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.innerHTML = `
-            <div class="card-image"><img src="${video.image}"></div>
-            <div class="card-content">
-                <div class="rating">${requins}</div>
-                <h3>${video.titre}</h3>
-                <p>${video.resume}</p>
-                <a href="video.html?id=${video.id}" class="btn-voir">VOIR LE NANAR</a>
+    grille.innerHTML = '';
+
+    // On inverse l'ordre (Nouveautés en premier)
+    const filmsInverses = [...videos].reverse();
+
+    // Calcul de la pagination
+    const indexDebut = (pageActuelle - 1) * filmsParPage;
+    const indexFin = indexDebut + filmsParPage;
+    const filmsAffichees = filmsInverses.slice(indexDebut, indexFin);
+
+    // Affichage des films (Design identique à ton ancien code)
+    filmsAffichees.forEach(film => {
+        grille.innerHTML += `
+            <div class="video-card">
+                <a href="video.html?id=${film.id}">
+                    <img src="${film.image}" alt="${film.titre}">
+                    <h3>${film.titre}</h3>
+                </a>
             </div>
         `;
-        grid.appendChild(card);
     });
 
-    document.getElementById('page-info').innerText = `Page ${pageActuelle}`;
-    document.getElementById('btn-prev').style.visibility = (pageActuelle === 1) ? "hidden" : "visible";
-    document.getElementById('btn-next').style.visibility = (videos.length > fin) ? "visible" : "hidden";
+    // Mise à jour de la pagination
+    if (pageInfo) {
+        pageInfo.innerText = `Page ${pageActuelle}`;
+    }
+
+    // Gestion de l'état des boutons
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+
+    if (btnPrev) btnPrev.disabled = (pageActuelle === 1);
+    if (btnNext) btnNext.disabled = (indexFin >= videos.length);
 }
 
-document.getElementById('btn-prev').onclick = () => { pageActuelle--; afficherVideos(); window.scrollTo(0,0); };
-document.getElementById('btn-next').onclick = () => { pageActuelle++; afficherVideos(); window.scrollTo(0,0); };
+// Événements pour les boutons
+document.getElementById('btn-prev')?.addEventListener('click', () => {
+    if (pageActuelle > 1) {
+        pageActuelle--;
+        afficherFilms();
+        window.scrollTo(0, 0);
+    }
+});
 
-afficherVideos();
+document.getElementById('btn-next')?.addEventListener('click', () => {
+    if ((pageActuelle * filmsParPage) < videos.length) {
+        pageActuelle++;
+        afficherFilms();
+        window.scrollTo(0, 0);
+    }
+});
+
+// Lancement automatique au chargement
+document.addEventListener('DOMContentLoaded', afficherFilms);
