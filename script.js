@@ -1,33 +1,25 @@
-window.onload = function() {
+// On s'assure que le code ne se lance que quand la page est prête
+window.addEventListener('load', function() {
     const grille = document.getElementById('video-grid');
     
-    if (typeof videos !== 'undefined') {
-        grille.innerHTML = ""; 
+    // On vérifie si les vidéos existent bien dans videos.js
+    if (typeof videos !== 'undefined' && videos.length > 0) {
+        grille.innerHTML = ""; // On vide le message d'erreur s'il y en avait un
 
-        // On centre la grille sur la page
-        grille.style.display = "grid";
-        grille.style.gridTemplateColumns = "repeat(auto-fill, minmax(280px, 1fr))";
-        grille.style.gap = "30px";
-        grille.style.maxWidth = "1200px"; // Largeur max du site
-        grille.style.margin = "0 auto";    // Centre le tout
-        grille.style.padding = "20px";
-
+        // On affiche chaque film
         videos.forEach(film => {
             grille.innerHTML += `
-                <div style="background: #111; border: 1px solid #444; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
-                    <img src="${film.image}" style="width: 100%; height: 200px; object-fit: cover;">
-                    
-                    <div style="padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <h3 style="color: #ff0000; margin: 0 0 10px 0; font-family: sans-serif;">${film.titre}</h3>
-                            <p style="color: #eee; font-size: 0.9em; margin-bottom: 20px;">${film.resume}</p>
-                        </div>
-                        
-                        <a href="video.html?id=${film.id}" style="display: block; background: #ff0000; color: white; text-align: center; padding: 10px; text-decoration: none; font-weight: bold; border-radius: 5px;">
-                            VOIR LA VIDÉO
-                        </a>
-                    </div>
+                <div class="video-card" style="display: inline-block; width: 250px; margin: 10px; vertical-align: top; border: 1px solid #ccc; padding: 10px;">
+                    <a href="video.html?id=${film.id}" style="text-decoration: none; color: inherit;">
+                        <img src="${film.image}" style="width: 100%; height: auto;">
+                        <h3>${film.titre}</h3>
+                        <p>${film.resume || ''}</p>
+                        <strong style="color: red;">VOIR LA VIDÉO</strong>
+                    </a>
                 </div>
             `;
         });
+    } else {
+        grille.innerHTML = "Aucun film trouvé. Vérifiez le fichier videos.js";
     }
+});
