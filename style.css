@@ -46,8 +46,15 @@ body { background-color: #000; color: #fff; font-family: sans-serif; }
     flex-direction: column; /* Aligne Titre, Résumé et Lien de haut en bas */
 }
 
-.rating { color: #0096ff; margin-bottom: 5px; }
-h3 { font-size: 1.1rem; margin-bottom: 5px; }
+.rating { 
+    color: #0096ff; 
+    font-size: 1.1rem; 
+    margin-bottom: 5px;
+    /* Voici l'effet de halo bleu requin */
+    filter: drop-shadow(0px 0px 8px rgba(0, 150, 255, 0.9)); 
+    /* Un petit espacement entre les requins pour le style */
+    letter-spacing: 3px; 
+}
 
 /* LE RÉSUMÉ */
 p { 
