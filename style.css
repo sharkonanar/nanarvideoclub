@@ -14,24 +14,16 @@ body {
 
 .banner {
     width: 100%;
-    min-height: 400px; /* Définit la hauteur de ta bannière */
-    padding: 60px 20px;
-    text-align: center;
+    height: 300px; /* J'ai réduit la hauteur à 300px, tu peux mettre 250px si tu veux encore plus petit */
     
-    /* REMPLACE 'banniere.jpg' par le nom exact de ton image */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/bantv.png');
+    background-image: url('images/bantv.png');
+    background-size: contain;     /* 'contain' permet de voir l'image ENTIÈRE sans la couper */
+    background-position: center;  /* Centre l'image */
+    background-repeat: no-repeat; /* Évite que l'image se répète si elle est petite */
+    background-color: #000;       /* Fond noir au cas où l'image ne prend pas toute la largeur */
     
-    background-size: cover;      /* L'image couvre toute la zone sans se déformer */
-    background-position: center; /* L'image est centrée (visages/sujets au milieu) */
-    background-repeat: no-repeat;
-    
-    /* Centre le texte verticalement dans la bannière */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    border-bottom: 1px solid #222;
 }
-
 .banner h1 {
     font-size: 3.5rem;
     color: #ff0000;
