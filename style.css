@@ -1,54 +1,76 @@
+/* Style Général */
 body {
-    background-color: #1a1a1a; /* Fond sombre */
-    color: #e0e0e0;
-    font-family: Arial, sans-serif;
+    background-color: #000000; /* Fond de page totalement noir */
+    color: #cccccc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
+    padding: 0;
 }
 
+/* Bannière */
 .banner {
-    background: #000 url('votre-banniere.jpg') center/cover;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 3px solid #ff4500; /* Une ligne de couleur pour le style */
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #0a0a0a; /* Un gris presque noir pour la bannière */
+    /* Note : On a enlevé la bordure rouge ici */
 }
 
+.banner h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Grille de cases (2 colonnes) */
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Les fameuses deux colonnes */
-    gap: 20px;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 10px;
+    grid-template-columns: 1fr 1fr; /* Force les deux colonnes */
+    gap: 30px; /* Espace entre les cases */
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
+/* Style d'une Case */
 .card {
-    background: #262626;
-    border: 1px solid #444;
-    transition: transform 0.2s;
+    background: #111111; /* Fond de la case légèrement plus clair que la page */
+    border: 1px solid #222222; /* Bordure très discrète */
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.3s;
 }
 
 .card:hover {
-    transform: scale(1.02);
-    border-color: #ff4500;
+    border-color: #444444; /* La case s'éclaire un peu au survol */
 }
 
-.card img {
+.image-container img {
     width: 100%;
-    height: auto;
+    display: block;
+    filter: grayscale(30%); /* Petit effet "vieux documentaire" */
 }
 
 .card-content {
-    padding: 15px;
+    padding: 20px;
 }
 
-.btn {
-    display: inline-block;
-    background: #ff4500;
-    color: white;
-    padding: 5px 10px;
-    text-decoration: none;
-    margin-top: 10px;
+.card-content h3 {
+    margin: 0 0 10px 0;
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+.card-content p {
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #999999;
+}
+
+/* Adaptation pour mobile (si l'écran est petit, on passe à 1 colonne) */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
 }
