@@ -6,126 +6,53 @@
     <title>Lecture Vidéo - Nanar vidéo club</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Styles spécifiques à la page de lecture */
-        body { 
-            background-color: #000; 
-            color: #fff; 
-            margin: 0; 
-            padding: 0; 
-            font-family: sans-serif;
-        }
+        body { background-color: #000; color: #fff; margin: 0; padding: 0; font-family: sans-serif; }
+        
+        /* Style de la bannière pour être sûr qu'elle s'affiche */
+        .banner { width: 100%; background: #111; }
+        .banner img { width: 100%; height: auto; display: block; }
 
-        .video-container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #888;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        .back-link:hover { color: #0096ff; }
+        .video-container { max-width: 900px; margin: 20px auto; padding: 20px; }
+        
+        /* On force l'affichage du titre et du lecteur */
+        #video-content { display: block !important; min-height: 300px; }
 
         .player-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Ratio 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 15px;
-            background: #111;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background: #222;
         }
-
         .player-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        h1 { 
-            margin: 20px 0 10px 0; 
-            font-size: 1.8rem; 
-            color: #fff; 
-        }
-
-        .description { 
-            color: #ccc; 
-            line-height: 1.7; 
-            font-size: 1.1rem; 
-            border-bottom: 1px solid #333; 
-            padding-bottom: 30px;
-            margin-bottom: 20px;
-            height: auto; 
-            min-height: 50px;
-        }
-
-        /* Zone Commentaires */
-        .comment-section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px 40px 20px;
-        }
-
-        .comment-box {
-            background: #111;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #222;
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            background: #000;
-            border: 1px solid #333;
-            color: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            resize: none;
-            box-sizing: border-box;
-            margin-top: 10px;
-        }
-
-        .btn-comm {
-            margin-top: 10px;
-            background: #0096ff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
         }
         
-        .btn-comm:hover { background: #007acc; }
+        .back-link { color: #0096ff; text-decoration: none; display: block; margin: 10px 0; }
+        .comment-section { max-width: 900px; margin: 20px auto; padding: 20px; }
+        .comment-box { background: #111; padding: 20px; border-radius: 10px; }
+        textarea { width: 100%; height: 80px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <header class="banner">
-        <img src="images/banniere.jpg" alt="Bannière Nanar TV">
+        <img src="images/nanarbann.jpg" alt="Bannière">
     </header>
 
     <div class="video-container">
-        <a href="index.html" class="back-link">← Retour aux archives</a>
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
         
         <div id="video-content">
-            <p>Chargement de la vidéo...</p>
+            <p>Chargement en cours...</p>
         </div>
     </div>
 
     <div class="comment-section">
         <div class="comment-box">
             <h3>Commentaires</h3>
-            <textarea placeholder="Laissez un commentaire sur ce nanar..."></textarea>
-            <button class="btn-comm">Envoyer</button>
+            <textarea placeholder="Votre avis..."></textarea>
         </div>
     </div>
 
