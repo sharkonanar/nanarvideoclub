@@ -1,80 +1,91 @@
-/* Style Général - Fond Noir Absolu */
+/* Fond Noir Absolu */
 body {
-    background-color: #000000 !important; 
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #000000;
     margin: 0;
     padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
 }
 
-/* Bannière de titre sans aucune bordure */
+/* Bannière sans liseret */
 .banner {
     text-align: center;
-    padding: 50px 20px;
+    padding: 60px 20px;
     background-color: #000000;
-    border: none !important; /* Supprime tout liseré */
 }
 
 .banner h1 {
+    font-size: 3rem;
     margin: 0;
-    font-size: 3em;
-    color: #ffffff;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .banner p {
-    color: #888;
-    margin-top: 10px;
+    color: #aaaaaa;
+    font-size: 1.2rem;
 }
 
-/* Grille en deux colonnes */
+/* Grille 2 colonnes */
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 25px;
-    max-width: 1000px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #000000;
 }
 
-/* Style des cases (le fond de la case est aussi noir pour se fondre) */
+/* Style des cases blanches arrondies */
 .card {
-    background-color: #000000;
-    border: 1px solid #333333; /* Juste un fin contour gris pour voir la case */
-    transition: border-color 0.3s;
+    background-color: #f5f5f5; /* Fond gris très clair / blanc */
+    border-radius: 20px;      /* Angles bien arrondis */
+    display: flex;            /* Aligne image et texte côte à côte */
+    overflow: hidden;         /* Coupe l'image pour qu'elle suive l'arrondi */
+    color: #000000;           /* Texte en noir pour être lisible sur le blanc */
+    transition: transform 0.3s ease;
+    height: 180px;            /* Hauteur fixe pour l'alignement */
 }
 
-/* Au survol, la bordure s'éclaircit légèrement */
 .card:hover {
-    border-color: #ffffff;
+    transform: translateY(-5px);
 }
 
-.card img {
+/* Partie Image (gauche) */
+.card-image {
+    flex: 1;                  /* Prend 40% de la largeur environ */
+    min-width: 150px;
+}
+
+.card-image img {
     width: 100%;
-    display: block;
-    border-bottom: 1px solid #333333;
+    height: 100%;
+    object-fit: cover;        /* L'image remplit la zone sans se déformer */
 }
 
+/* Partie Texte (droite) */
 .card-content {
-    padding: 15px;
+    flex: 1.5;                /* Prend le reste de la place */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card-content h3 {
     margin: 0 0 10px 0;
-    font-size: 1.1em;
-    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .card-content p {
-    font-size: 0.85em;
-    color: #aaaaaa;
+    margin: 0;
+    font-size: 0.85rem;
+    color: #444444;
     line-height: 1.4;
 }
 
-/* Mobile : une seule colonne sur téléphone */
-@media (max-width: 700px) {
+/* Responsive : 1 seule colonne sur mobile */
+@media (max-width: 900px) {
     .container {
         grid-template-columns: 1fr;
     }
