@@ -1,4 +1,4 @@
-/* --- 1. RESET --- */
+/* --- 1. RESET ET BASE --- */
 * {
     margin: 0;
     padding: 0;
@@ -6,50 +6,67 @@
 }
 
 body {
-    background-color: #000;
-    color: white;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #000000; /* Fond de page noir */
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
 }
 
-/* --- 2. BANNIÈRE --- */
+/* --- 2. BANNIÈRE (HAUT DU SITE) --- */
 .banner {
-    padding: 50px 20px;
+    width: 100%;
+    padding: 60px 20px;
     text-align: center;
-    background-color: #111;
+    background-color: #0a0a0a;
+    border-bottom: 1px solid #222;
 }
 
 .banner h1 {
-    font-size: 2.5rem;
-    color: #ff0000;
+    font-size: 3rem;
+    color: #ff0000; /* Titre du site en rouge */
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
 }
 
-/* --- 3. GRILLE EN DEUX COLONNES --- */
+.banner p {
+    color: #888;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* --- 3. GRILLE DEUX COLONNES --- */
 .container {
     display: grid;
-    /* Crée 2 colonnes égales */
+    /* Crée 2 colonnes égales sur PC */
     grid-template-columns: repeat(2, 1fr); 
-    gap: 20px;
+    gap: 25px;
     max-width: 1200px;
     margin: 40px auto;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
-/* --- 4. LA CARTE (HORIZONTAL À L'INTÉRIEUR) --- */
+/* --- 4. LA CARTE (CASES) --- */
 .card {
-    background-color: #fff;
-    border-radius: 10px;
+    background-color: #1a1a1a; /* Fond des cases en gris foncé */
+    border: 1px solid #333;    /* Bordure discrète */
+    border-radius: 12px;
     overflow: hidden;
-    display: flex; /* Aligne Image et Contenu côte à côte */
+    display: flex;             /* Aligne image et texte côte à côte */
     flex-direction: row; 
-    min-height: 200px;
-    width: 100%;
+    min-height: 220px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Bloc Image (prend 40% de la carte) */
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #ff0000;     /* La bordure devient rouge au survol */
+}
+
+/* BLOC IMAGE (GAUCHE) */
 .card-image {
     flex: 0 0 40%;
+    background-color: #000;
 }
 
 .card-image img {
@@ -59,54 +76,67 @@ body {
     display: block;
 }
 
-/* Bloc Contenu (prend 60% de la carte) */
+/* BLOC TEXTE (DROITE) */
 .card-content {
     flex: 1;
-    padding: 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Pousse le bouton vers le bas */
-    color: #333;
+    justify-content: space-between;
     text-align: left;
 }
 
 .card-content h3 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    color: #000;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #ffffff; /* Titre de la vidéo en blanc */
 }
 
 .card-content p {
-    font-size: 0.85rem;
-    color: #555;
-    margin-bottom: 10px;
-    /* Limite le texte à 3 lignes pour éviter que la carte soit trop haute */
+    font-size: 0.9rem;
+    color: #bbbbbb; /* Texte du résumé en gris clair */
+    margin-bottom: 15px;
+    /* Coupe le texte s'il est trop long */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* --- 5. BOUTON --- */
+/* --- 5. BOUTON VOIR LA VIDÉO --- */
 .btn-voir {
     display: inline-block;
-    background-color: #000;
-    color: #fff;
-    padding: 8px 12px;
+    background-color: #444444; /* Bouton en gris */
+    color: #ffffff;           /* Texte du bouton en blanc */
+    padding: 10px 18px;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-weight: bold;
-    font-size: 0.8rem;
-    align-self: flex-start; /* Aligne le bouton à gauche sous le texte */
+    font-size: 0.85rem;
+    align-self: flex-start;
+    transition: background 0.3s;
 }
 
 .btn-voir:hover {
-    background-color: #555;
+    background-color: #666666; /* Gris plus clair au passage de souris */
 }
 
 /* --- 6. ADAPTATION MOBILE --- */
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
     .container {
-        grid-template-columns: 1fr; /* 1 seule colonne sur tablettes/mobiles */
+        grid-template-columns: 1fr; /* Une seule colonne sur petit écran */
+    }
+    .card {
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 500px) {
+    .card {
+        flex-direction: column; /* L'image repasse au-dessus sur téléphone */
+    }
+    .card-image {
+        width: 100%;
+        height: 180px;
     }
 }
