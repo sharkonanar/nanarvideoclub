@@ -12,27 +12,39 @@ body {
     line-height: 1.6;
 }
 
-/* --- 2. BANNIÈRE (HAUT DU SITE) --- */
 .banner {
     width: 100%;
+    min-height: 400px; /* Définit la hauteur de ta bannière */
     padding: 60px 20px;
     text-align: center;
-    background-color: #0a0a0a;
-    border-bottom: 1px solid #222;
+    
+    /* REMPLACE 'banniere.jpg' par le nom exact de ton image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/bantv.png');
+    
+    background-size: cover;      /* L'image couvre toute la zone sans se déformer */
+    background-position: center; /* L'image est centrée (visages/sujets au milieu) */
+    background-repeat: no-repeat;
+    
+    /* Centre le texte verticalement dans la bannière */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .banner h1 {
-    font-size: 3rem;
-    color: #ff0000; /* Titre du site en rouge */
+    font-size: 3.5rem;
+    color: #ff0000;
     text-transform: uppercase;
     letter-spacing: 5px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* Ombre pour détacher le titre de l'image */
     margin-bottom: 10px;
 }
 
 .banner p {
-    color: #888;
-    font-size: 1.1rem;
-    font-style: italic;
+    color: #cccccc;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
 }
 
 /* --- 3. GRILLE DEUX COLONNES --- */
