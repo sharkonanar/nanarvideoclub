@@ -42,9 +42,8 @@ window.addEventListener('load', function() {
                                 VOIR LA VIDÉO >
                             </div>
                             <div style="background: black; color: white; border: 1px solid #444; text-align: center; padding: 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold; text-transform: uppercase;">
-                                Fiche du film
-                        </div>
-                        
+                                Fiche du film 
+                                </div>     
                     </a>
                 </div>
             `;
