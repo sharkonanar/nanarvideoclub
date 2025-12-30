@@ -1,47 +1,82 @@
-/* LE MEUBLE : On bloque tout */
+/* 1. FOND DE PAGE : On force le noir partout */
+html, body { 
+    background-color: #050505 !important; 
+    color: white; 
+    margin: 0; 
+    padding: 0;
+    font-family: sans-serif; 
+}
+
+/* 2. BANNIÈRE */
+.banner {
+    text-align: center;
+    padding: 10px 0;
+}
+.banner img { 
+    max-width: 1000px; 
+    width: 90%;
+}
+
+/* 3. LE MEUBLE : Moins d'espace entre les tranches */
 #video-grid {
     display: grid;
-    /* On fixe les colonnes à 100px : elles ne pourront plus s'étaler */
     grid-template-columns: repeat(5, 100px); 
     justify-content: center; 
-    gap: 15px;
-    padding: 40px;
+    /* "gap: 5px" au lieu de 15px pour serrer les cassettes comme dans un vrai rayon */
+    gap: 5px; 
+    padding: 20px;
     margin: 0 auto;
 }
 
-/* LA BOÎTE : On utilise le ratio universel d'une tranche VHS */
+/* 4. LA BOÎTE */
 .vhs-box {
     position: relative;
     width: 100px; 
-    height: 350px; /* On remet une hauteur fixe, MAIS on change le mode de l'image */
+    height: 350px; 
     background: #000;
-    border: 1px solid #333;
+    border: 1px solid #222; /* Bordure plus discrète */
     overflow: hidden; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
-/* LA TEXTURE : LE SECRET EST ICI */
+/* 5. LA TEXTURE : Elle reste nickel grâce à contain */
 .vhs-tranche-img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* "contain" au lieu de "cover" ou "fill" */
-    /* Ça veut dire : montre toute l'image, sans la tasser, sans la couper */
     object-fit: contain; 
-    /* On ajoute un fond noir pour boucher les micro-espaces si le ratio n'est pas parfait */
     background-color: #000; 
     z-index: 1;
 }
 
-/* L'AFFICHE AU SURVOL */
+/* 6. LE TITRE VERTICAL */
+.vhs-title {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    width: 320px; 
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
+    pointer-events: none;
+    white-space: nowrap;
+    font-size: 0.8rem;
+}
+
+/* 7. L'AFFICHE AU SURVOL */
 .vhs-poster {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Même combat : contain pour voir l'affiche entière de la tête aux pieds */
     object-fit: contain; 
     background-color: #000;
     opacity: 0;
@@ -49,22 +84,12 @@
     transition: opacity 0.3s ease;
 }
 
-/* LE TITRE VERTICAL */
-.vhs-title {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-90deg);
-    width: 300px; 
-    text-align: center;
-    color: #fff;
-    font-weight: bold;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    pointer-events: none;
+/* EFFET SURVOL */
+.vhs-box:hover {
+    transform: scale(1.05);
+    border-color: red;
+    z-index: 10;
 }
-
 .vhs-box:hover .vhs-poster {
     opacity: 1;
 }
