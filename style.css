@@ -2,56 +2,67 @@ body {
     background: #050505; 
     color: white; 
     margin: 0; 
-    font-family: 'Courier New', Courier, monospace; 
+    font-family: sans-serif;
 }
 
-.banner img {
-    width: 100%;
-    max-width: 1200px;
-    display: block;
-    margin: 0 auto;
-}
+.banner img { width: 100%; max-width: 1200px; display: block; margin: 0 auto; }
 
-/* LA GRILLE DE FILMS */
+/* Rangement par 5 */
 #video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 40px;
-    padding: 40px;
-    max-width: 1100px;
+    grid-template-columns: repeat(5, 1fr); /* 5 tranches par ligne */
+    gap: 10px;
+    padding: 20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* LA JAQUETTE VHS */
-.vhs-case {
+/* La Cassette (Mode Tranche) */
+.vhs-box {
+    position: relative;
+    height: 350px;
     background: #1a1a1a;
-    border: 4px solid #333;
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
+    border: 2px solid #333;
     cursor: pointer;
-    text-decoration: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-.vhs-case:hover {
-    transform: scale(1.05) rotate(2deg);
-    border-color: #ff0000;
-}
-
-/* L'AFFICHE (Taille fixée ici) */
-.vhs-case img {
+/* Image de la jaquette (cachée au début) */
+.vhs-poster {
     width: 100%;
-    height: 280px;
+    height: 100%;
     object-fit: cover;
-    display: block;
-    border-bottom: 2px solid #333;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-/* LE TEXTE SOUS L'IMAGE */
-.vhs-info h3 {
-    margin: 0;
-    padding: 15px 5px;
-    font-size: 0.85rem;
+/* Titre sur la tranche (vertical) */
+.vhs-title {
+    position: absolute;
+    width: 100%;
     text-align: center;
-    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg); /* Texte à la verticale */
+    font-weight: bold;
     text-transform: uppercase;
+    white-space: nowrap;
+    color: #aaa;
+    font-size: 1.2rem;
+}
+
+/* EFFET AU SURVOL */
+.vhs-box:hover {
+    transform: scale(1.1); /* La cassette sort un peu du lot */
+    z-index: 10;
+    border-color: red;
+}
+
+.vhs-box:hover .vhs-poster {
+    opacity: 1; /* L'affiche apparaît par-dessus */
+}
+
+.vhs-box:hover .vhs-title {
+    display: none; /* Le titre vertical disparaît pour laisser place à l'image */
 }
