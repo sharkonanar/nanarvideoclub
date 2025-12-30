@@ -1,4 +1,12 @@
 const videos = [
+    {
+        id: "7",
+        titre: "L' humanoîde",
+        resume: "Une épopée incroyable.",
+        image: "images/lhumanoide.jpg",
+        videoUrl: "https://www.youtube.com/embed/7t5HAvj_Fjg",
+        description: "ça ressemble à du Star Wars, ça a la couleur du Star Wars, mais c' est pas du Star Wars"
+    },
    {
         id: "6",
         titre: "Ninja Condor 13",
