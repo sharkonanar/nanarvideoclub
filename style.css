@@ -1,80 +1,11 @@
-/* --- CONFIGURATION GÉNÉRALE --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background-color: #000; color: #fff; font-family: sans-serif; }
-
-/* BANNIÈRE */
-.banner { width: 100%; display: block; line-height: 0; }
-.banner img { width: 100%; height: auto; display: block; }
-
-/* LA GRILLE : Crée les deux colonnes (Gauche et Droite) */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* LES 2 COLONNES CÔTE À CÔTE */
-    gap: 20px; /* Espace entre les deux colonnes */
+.vhs-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: #efefef;
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.6em; /* Un peu plus grand */
+    letter-spacing: 4px; /* Plus d'espace entre les lettres pour le look rétro */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    padding: 20px 0;
 }
-
-/* LA CASE : Un film présenté horizontalement */
-.card {
-    background: #111;
-    border: 1px solid #222;
-    border-radius: 8px;
-    display: flex;          /* MET L'IMAGE À GAUCHE ET LE TEXTE À DROITE */
-    flex-direction: row;    /* Force l'image à gauche */
-    height: 220px;          /* Hauteur fixe pour aligner les cases */
-    overflow: hidden;
-}
-
-/* L'IMAGE (À GAUCHE DE LA CASE) */
-.card-image {
-    width: 150px;           /* Largeur de l'affiche */
-    min-width: 150px;
-}
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* LE CONTENU (À DROITE DE LA CASE) */
-.card-content {
-    flex: 1;                /* Prend tout l'espace à droite de l'image */
-    padding: 15px;
-    display: flex;
-    flex-direction: column; /* Aligne Titre, Résumé et Lien de haut en bas */
-}
-
-.rating { 
-    color: #0096ff; 
-    font-size: 1.1rem; 
-    margin-bottom: 5px;
-    /* Voici l'effet de halo bleu requin */
-    filter: drop-shadow(0px 0px 8px rgba(0, 150, 255, 0.9)); 
-    /* Un petit espacement entre les requins pour le style */
-    letter-spacing: 3px; 
-}
-
-/* LE RÉSUMÉ */
-p { 
-    color: #aaa; 
-    font-size: 0.85rem; 
-    flex-grow: 1;          /* POUSSE LE LIEN SOUS LE RÉSUMÉ */
-    margin-bottom: 10px;
-    overflow: hidden;
-}
-
-/* LE LIEN POUR VOIR LA VIDÉO (SOUS LE RÉSUMÉ) */
-.btn-voir {
-    background: #0096ff;
-    color: #fff;
-    text-decoration: none;
-    text-align: center;
-    padding: 10px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-/* PAGINATION */
-.pagination { display: flex; justify-content: center; gap: 20px; padding: 40px; }
