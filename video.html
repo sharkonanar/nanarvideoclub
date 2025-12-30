@@ -64,13 +64,20 @@
         const film = videos.find(v => v.id === filmId);
 
         if (film) {
-            document.getElementById('movie-title').textContent = film.titre;
-            
-            // On s'assure que le lien est bien un lien EMBED
-            let finalUrl = film.url;
-            if (finalUrl.includes("watch?v=")) {
-                finalUrl = finalUrl.replace("watch?v=", "embed/");
-            }
+    document.getElementById('movie-title').textContent = film.titre;
+    
+    // On utilise exactement la structure de YouTube
+    document.getElementById('player-container').innerHTML = `
+        <iframe 
+            width="100%" 
+            height="100%" 
+            src="${film.url}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>`;
+}
 
             document.getElementById('player-container').innerHTML = `
                 <iframe src="${finalUrl}?autoplay=1" 
