@@ -15,4 +15,12 @@ const videos = [
         videoUrl: "https://www.youtube.com/embed/4XTC-8IaIos",
         description: "La société s' est effrondrée et le monde est devenu une immense gravière. Le plexiglas est devenu la norme et les survivants se font victimiser par des néo-nazis punks adoradeurs de voiturettes de golf",
     },
+    {
+        id: "3",
+        titre: "Eaux Sauvages",
+        resume: "Une épopée incroyable.",
+        image: "images/eauxsauvages.jpg",
+        videoUrl: "https://www.youtube.com/embed/928HEe3SWZo",
+        description: "Un groupe de clampins partent pour une randonnée sur les eaux sauvages... Tant mieux, c' est le titre du film..."
+    },
 ];
