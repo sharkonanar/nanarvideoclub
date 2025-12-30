@@ -1,4 +1,4 @@
-/* 1. FOND DE PAGE : On force le noir partout */
+/* FOND ET BASE */
 html, body { 
     background-color: #050505 !important; 
     color: white; 
@@ -7,89 +7,88 @@ html, body {
     font-family: sans-serif; 
 }
 
-/* 2. BANNIÈRE */
-.banner {
-    text-align: center;
-    padding: 10px 0;
-}
-.banner img { 
-    max-width: 1000px; 
-    width: 90%;
-}
+.banner { text-align: center; padding: 20px 0; }
+.banner img { max-width: 1000px; width: 90%; }
 
-/* 3. LE MEUBLE : Moins d'espace entre les tranches */
+/* LE MEUBLE : Reste identique (5 tranches fines) */
 #video-grid {
     display: grid;
     grid-template-columns: repeat(5, 100px); 
     justify-content: center; 
-    /* "gap: 5px" au lieu de 15px pour serrer les cassettes comme dans un vrai rayon */
-    gap: 5px; 
-    padding: 20px;
+    gap: 8px; 
+    padding: 40px;
     margin: 0 auto;
 }
 
-/* 4. LA BOÎTE */
+/* LA BOÎTE VHS */
 .vhs-box {
     position: relative;
-    width: 100px; 
+    width: 100px; /* Taille de la tranche au repos */
     height: 350px; 
     background: #000;
-    border: 1px solid #222; /* Bordure plus discrète */
+    border: 1px solid #222;
     overflow: hidden; 
     cursor: pointer;
-    transition: transform 0.2s ease;
+    /* Transition fluide pour l'ouverture */
+    transition: width 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* 5. LA TEXTURE : Elle reste nickel grâce à contain */
+/* LA TEXTURE DE LA TRANCHE */
 .vhs-tranche-img {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100px; /* FIXE : Elle ne s'étire pas */
     height: 100%;
     object-fit: contain; 
     background-color: #000; 
     z-index: 1;
 }
 
-/* 6. LE TITRE VERTICAL */
+/* LE TITRE SUR LA TRANCHE */
 .vhs-title {
     position: absolute;
     z-index: 2;
-    top: 40%;
-    left: 50%;
+    top: 35%; /* Ton réglage pour qu'il soit haut */
+    left: 50px; /* Centré sur les 100px de la tranche */
     transform: translate(-50%, -50%) rotate(-90deg);
-    width: 320px; 
+    width: 300px; 
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
     color: #fff;
     text-shadow: 2px 2px 4px #000;
-    pointer-events: none;
     white-space: nowrap;
     font-size: 0.8rem;
+    pointer-events: none;
+    transition: opacity 0.2s; /* Disparaît doucement quand la jaquette s'ouvre */
 }
 
-/* 7. L'AFFICHE AU SURVOL */
+/* L'AFFICHE (Cachée au repos) */
 .vhs-poster {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%; /* Prendra toute la largeur de la boîte une fois ouverte */
     height: 100%;
-    object-fit: contain; 
-    background-color: #000;
+    object-fit: cover; 
     opacity: 0;
     z-index: 3;
     transition: opacity 0.3s ease;
 }
 
-/* EFFET SURVOL */
+/* --- SURVOL : L'EFFET "OUVERTURE DE BOITIER" --- */
 .vhs-box:hover {
-    transform: scale(1.05);
+    width: 240px; /* La boîte s'élargit pour devenir une jaquette large */
+    z-index: 100; /* Passe devant les autres sans décaler la grille */
     border-color: red;
-    z-index: 10;
+    box-shadow: 15px 0 25px rgba(0,0,0,0.9);
 }
+
 .vhs-box:hover .vhs-poster {
-    opacity: 1;
+    opacity: 1; /* L'affiche apparaît */
+}
+
+.vhs-box:hover .vhs-title {
+    opacity: 0; /* On cache le titre de la tranche pour ne pas polluer l'affiche */
 }
