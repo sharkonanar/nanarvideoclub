@@ -57,38 +57,35 @@
             </div>
     </div>
 
- <script>
+<script>
     // 1. On récupère l'ID (ex: 1)
     const params = new URLSearchParams(window.location.search);
     const filmId = params.get('id');
     
     // 2. On cherche le film dans videos.js
-    const film = videos.find(v => v.id === filmId);
+    // Attention : on vérifie que "videos" existe bien
+    if (typeof videos !== 'undefined') {
+        const film = videos.find(v => v.id === filmId);
 
-    const playerContainer = document.getElementById('player-container');
-    const titleElement = document.getElementById('movie-title');
+        if (film) {
+            // On met à jour le titre
+            document.getElementById('movie-title').textContent = film.titre;
 
-    if (film) {
-        titleElement.textContent = film.titre;
+            // On prépare l'URL (on force le format embed)
+            let videoUrl = film.url.replace("watch?v=", "embed/");
 
-        // SECURITÉ : On s'assure que le lien est au bon format pour YouTube
-        let videoUrl = film.url;
-        if (videoUrl.includes("watch?v=")) {
-            videoUrl = videoUrl.replace("watch?v=", "embed/");
+            // 3. ON INJECTE L'IFRAME (Une seule fois !)
+            document.getElementById('player-container').innerHTML = `
+                <iframe 
+                    src="${videoUrl}" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>`;
+        } else {
+            document.getElementById('movie-title').textContent = "Film non trouvé (ID: " + filmId + ")";
         }
-
-        // 3. On injecte l'iframe proprement
-        playerContainer.innerHTML = `
-            <iframe 
-                width="100%" 
-                height="100%" 
-                src="${videoUrl}" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>`;
     } else {
-        titleElement.textContent = "Film non trouvé";
+        document.getElementById('movie-title').textContent = "Erreur : videos.js non chargé";
     }
 </script>
 </body>
