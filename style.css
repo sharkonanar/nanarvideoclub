@@ -92,3 +92,26 @@ html, body {
 .vhs-box:hover .vhs-title {
     opacity: 0; /* On cache le titre de la tranche pour ne pas polluer l'affiche */
 }
+/* --- CORRECTION DU BOUTON RETOUR --- */
+.back-btn { 
+    display: inline-block !important; /* Force l'affichage en bloc pour les marges */
+    color: #888 !important;           /* Force le gris (écrase le bleu) */
+    text-decoration: none !important; /* Enlève le soulignement */
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    margin-top: 20px; 
+    margin-bottom: 10px; 
+    transition: color 0.3s;
+}
+
+.back-btn:hover { 
+    color: red !important; /* Devient rouge au survol */
+}
+
+/* S'assurer que le bouton est centré */
+.container {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
