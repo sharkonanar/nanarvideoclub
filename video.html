@@ -1,3 +1,13 @@
+Dans ton code actuel, il manque une seule petite ligne cruciale : celle qui appelle ton fichier videos.js.
+
+Comme tu as l'erreur "videos.js non chargé", c'est parce que ton script essaie de lire la liste videos, mais il ne sait pas où elle se trouve.
+La solution :
+
+Ajoute cette ligne juste au-dessus de ton premier <script> : <script src="videos.js"></script>
+
+Voici ton code complet et corrigé. Copie tout et remplace ton fichier video.html actuel :
+HTML
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,12 +27,9 @@
             font-family: sans-serif;
         }
         .header-vhs { width: 100%; background: #111; padding: 0; text-align: center; border-bottom: 2px solid #333; line-height: 0; }
-        
         .container { width: 90%; max-width: 900px; margin-top: 30px; text-align: center; }
-        
         .back-btn { color: #888; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; font-weight: bold; }
         .back-btn:hover { color: red; }
-
         h1#movie-title { 
             font-family: 'Arial Black', sans-serif; 
             margin: 20px 0; 
@@ -30,7 +37,6 @@
             letter-spacing: 2px;
             color: #eee;
         }
-
         .screen-frame {
             width: 100%;
             aspect-ratio: 16/9;
@@ -50,43 +56,41 @@
 
     <div class="container">
         <a href="index.html" class="back-btn">← Retour au rayon</a>
-        
         <h1 id="movie-title">Chargement...</h1>
-
-        <div class="screen-frame" id="player-container">
-            </div>
+        <div class="screen-frame" id="player-container"></div>
     </div>
 
-<script>
-    // 1. On récupère l'ID (ex: 1)
-    const params = new URLSearchParams(window.location.search);
-    const filmId = params.get('id');
-    
-    // 2. On cherche le film dans videos.js
-    // Attention : on vérifie que "videos" existe bien
-    if (typeof videos !== 'undefined') {
-        const film = videos.find(v => v.id === filmId);
+    <script src="videos.js"></script>
 
-        if (film) {
-            // On met à jour le titre
-            document.getElementById('movie-title').textContent = film.titre;
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const filmId = params.get('id');
+        
+        // On vérifie si le fichier videos.js a bien chargé la variable "videos"
+        if (typeof videos !== 'undefined') {
+            const film = videos.find(v => v.id === filmId);
 
-            // On prépare l'URL (on force le format embed)
-            let videoUrl = film.url.replace("watch?v=", "embed/");
+            if (film) {
+                document.getElementById('movie-title').textContent = film.titre;
 
-            // 3. ON INJECTE L'IFRAME (Une seule fois !)
-            document.getElementById('player-container').innerHTML = `
-                <iframe 
-                    src="${videoUrl}" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>`;
+                // On s'assure que le lien YouTube est bien au format "embed"
+                let videoUrl = film.url;
+                if (videoUrl.includes("watch?v=")) {
+                    videoUrl = videoUrl.replace("watch?v=", "embed/");
+                }
+
+                document.getElementById('player-container').innerHTML = `
+                    <iframe 
+                        src="${videoUrl}" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>`;
+            } else {
+                document.getElementById('movie-title').textContent = "Film non trouvé (ID: " + filmId + ")";
+            }
         } else {
-            document.getElementById('movie-title').textContent = "Film non trouvé (ID: " + filmId + ")";
+            document.getElementById('movie-title').textContent = "Erreur : le fichier videos.js est introuvable";
         }
-    } else {
-        document.getElementById('movie-title').textContent = "Erreur : videos.js non chargé";
-    }
-</script>
+    </script>
 </body>
 </html>
