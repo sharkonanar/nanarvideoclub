@@ -2,48 +2,76 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Lecteur VHS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur VHS - Cinéma</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { background: #000; color: white; font-family: sans-serif; text-align: center; padding: 50px; }
-        .vhs-screen { 
-            width: 80%; max-width: 900px; margin: 20px auto; 
-            border: 15px solid #222; border-radius: 10px; 
-            background: #000; aspect-ratio: 16/9; 
+        body {
+            background: #000;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .container { width: 90%; max-width: 1000px; text-align: center; }
+        
+        /* Cadre du lecteur */
+        .video-player {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #111;
+            border: 10px solid #222;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            margin: 20px 0;
         }
         iframe { width: 100%; height: 100%; border: none; }
-        .back-btn { color: #888; text-decoration: none; font-size: 0.9rem; }
-        .back-btn:hover { color: white; }
-        h1 { font-family: 'Arial Black', sans-serif; text-transform: uppercase; margin-top: 30px; }
+        
+        .back-link {
+            color: #666;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .back-link:hover { color: red; }
+        h1 { font-family: 'Arial Black', sans-serif; margin: 10px 0; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-btn">← RETOUR AU RAYONNAGE</a>
+    <div class="container">
+        <a href="index.html" class="back-link">← Retour au rayon</a>
+        
+        <div class="video-player" id="player">
+            </div>
 
-    <div class="vhs-screen" id="player">
-        </div>
-
-    <h1 id="movie-title">CHARGEMENT...</h1>
+        <h1 id="movie-title">CHARGEMENT...</h1>
+    </div>
 
     <script src="videos.js"></script>
 
     <script>
-        // 1. On récupère l'ID envoyé dans l'URL (ex: ?id=adam-eve)
-        const params = new URLSearchParams(window.location.search);
-        const idDuFilm = params.get('id');
+        // Récupérer l'ID dans l'adresse
+        const urlParams = new URLSearchParams(window.location.search);
+        const filmId = urlParams.get('id');
 
-        // 2. On cherche le film correspondant dans ton fichier videos.js
-        const filmTrouve = videos.find(f => f.id === idDuFilm);
+        // Trouver le film dans le fichier videos.js
+        const film = videos.find(v => v.id === filmId);
 
-        // 3. Si on le trouve, on met à jour la page
-        if (filmTrouve) {
-            document.getElementById('movie-title').textContent = filmTrouve.titre;
+        if (film) {
+            // Si on le trouve : on change le titre et on met l'iframe
+            document.getElementById('movie-title').textContent = film.titre;
             document.getElementById('player').innerHTML = `
-                <iframe src="${filmTrouve.url}?autoplay=1" allow="autoplay; fullscreen"></iframe>
+                <iframe src="${film.url}?autoplay=1" allow="autoplay; fullscreen"></iframe>
             `;
         } else {
-            document.getElementById('movie-title').textContent = "Film non trouvé";
+            // Si on ne le trouve pas
+            document.getElementById('movie-title').textContent = "Film introuvable";
         }
     </script>
 </body>
