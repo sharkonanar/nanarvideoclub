@@ -5,7 +5,7 @@ const videos = [
         resume: "Une épopée incroyable.",
         image: "images/challengeninja.jpg",
         videoUrl: "https://www.youtube.com/embed/PLUyDrJiYxNOZpDvfardgHhTTMSpiNsjvY",
-        description: "L' histoire poignante d' un jeune homme ne vivant que pour venger le meurtre de sa famille. C' est dit dans le film, si, si... Sinon, y' a aussi des ninjas et pleins de bruitages tout rigolo"
+        description: "L' histoire poignante d' un jeune homme ne vivant que pour venger le meurtre de sa famille. C' est dit dans le film, si, si... Sinon, y' a aussi des ninjas et plein de bruitages tout rigolos"
     },
    {
         id: "4",
