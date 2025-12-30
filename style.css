@@ -111,7 +111,18 @@ html, body {
 
 /* S'assurer que le bouton est centré */
 .container {
-    width: 100%;
+    width: 90%;
+    max-width: 900px; /* Taille idéale pour un lecteur vidéo */
+    margin: 0 auto;   /* Centre le bloc sur la page */
     text-align: center;
-    margin: 0 auto;
+}
+
+/* On s'assure que le cadre de l'écran respecte bien ces dimensions */
+.screen-frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border: 12px solid #1a1a1a;
+    box-shadow: 0 0 50px rgba(0,0,0,1);
+    margin: 20px auto; /* Ajoute un peu d'espace et centre */
 }
