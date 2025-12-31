@@ -25,7 +25,7 @@ html, body {
     position: relative;
     width: 100px; /* Taille de la tranche au repos */
     height: 350px; 
-    background: #000;
+    background: #DFAF2C;
     border: 1px solid #222;
     overflow: hidden; 
     cursor: pointer;
