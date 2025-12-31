@@ -195,6 +195,9 @@ html, body {
     background: white;
 }
 .nanaro-footer {
+    position: fixed;   /* Il reste scotché à l'écran */
+    bottom: 0;         /* Tout en bas */
+    left: 0;
     width: 100%;
     text-align: center;
     padding: 40px 0;
