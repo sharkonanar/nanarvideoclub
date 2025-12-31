@@ -194,3 +194,21 @@ html, body {
 .filter-menu-lateral button:hover {
     background: white;
 }
+.nanaro-footer {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 50px;
+    
+    /* Ta couleur grise anthracite */
+    color: #414143; 
+    
+    /* La police identique au menu */
+    font-family: sans-serif; 
+    
+    /* Style pour que ce soit élégant */
+    font-size: 0.85em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    clear: both; /* Sécurité pour être sûr qu'il se place bien sous la grille */
+}
