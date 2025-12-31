@@ -17,5 +17,10 @@ function displayVideos() {
         `;
         grid.appendChild(card);
     });
+    }
+
+// Cette fonction est celle que tes boutons du menu vont appeler
+function filterGenre(genre) {
+    displayVideos(genre);
 }
 displayVideos();
