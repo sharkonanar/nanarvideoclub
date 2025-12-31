@@ -56,6 +56,7 @@ const videos = [
    {
         id: "4",
         titre: "Ken le survivant",
+        genre: "fantastique",
         resume: "Une épopée incroyable.",
         image: "images/kenlesurvivant.jpg",
         videoUrl: "https://www.youtube.com/embed/0-CmuMithAE",
