@@ -26,7 +26,7 @@ html, body {
     width: 100%; /* Taille de la tranche au repos */
     height: 350px; 
     background: #DFAF2C;
-    border: 1px solid #222;
+    border: 1px solid #DFAF2C;
     overflow: hidden; 
     cursor: pointer;
     /* Transition fluide pour l'ouverture */
