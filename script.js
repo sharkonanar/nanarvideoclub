@@ -1,26 +1,36 @@
 const grid = document.getElementById('video-grid');
 
-function displayVideos() {
+// On ajoute (genreChoisi = 'all') ici pour recevoir l'ordre du bouton
+function displayVideos(genreChoisi = 'all') {
     if (!grid || typeof videos === 'undefined') return;
+    
     grid.innerHTML = ''; 
 
     videos.forEach(film => {
-        const card = document.createElement('div');
-        card.innerHTML = `
-            <a href="video.html?id=${film.id}" style="text-decoration: none;">
-                <div class="vhs-box">
-                    <img src="images/vhs-texture.png" class="vhs-tranche-img">
-                    <img src="${film.image}" class="vhs-poster">
-                    <span class="vhs-title">${film.titre}</span>
-                </div>
-            </a>
-        `;
-        grid.appendChild(card);
+        // ON AJOUTE LA CONDITION DE FILTRAGE ICI
+        if (genreChoisi === 'all' || film.genre === genreChoisi) {
+            const card = document.createElement('div');
+            // On s'assure que la classe CSS est là
+            card.className = 'vhs-item'; 
+            
+            card.innerHTML = `
+                <a href="video.html?id=${film.id}" style="text-decoration: none;">
+                    <div class="vhs-box">
+                        <img src="images/vhs-texture.png" class="vhs-tranche-img">
+                        <img src="${film.image}" class="vhs-poster">
+                        <span class="vhs-title">${film.titre}</span>
+                    </div>
+                </a>
+            `;
+            grid.appendChild(card);
+        }
     });
-    }
+}
 
-// Cette fonction est celle que tes boutons du menu vont appeler
+// Cette fonction fait le pont entre le clic et l'affichage
 function filterGenre(genre) {
     displayVideos(genre);
 }
-displayVideos();
+
+// Au chargement de la page, on affiche tout
+displayVideos('all');
