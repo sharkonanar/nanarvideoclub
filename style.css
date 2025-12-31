@@ -153,17 +153,21 @@ html, body {
 }
 /* Le menu qui flotte à droite */
 .filter-menu-lateral {
-    position: fixed;   /* Fixé à l'écran */
-    right: 110px;       /* 30px du bord droit */
-    top: 50%;          /* Centré verticalement */
-    transform: translateY(-50%); /* Ajustement pour le centrage vertical */
+    position: fixed;
+    /* On se place au milieu de l'écran */
+    left: 50%; 
+    /* On se décale de 520px vers la droite (la moitié de ton meuble + un petit espace) */
+    margin-left: 520px; 
+    
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
-    flex-direction: column; /* Boutons les uns sous les autres */
-    gap: 8px;
-    background: rgba(0, 0, 0, 0.9); /* Fond noir transparent */
-    padding: 15px;
-    border: 2px solid #DFAF2C; /* Contour ocre */
-    z-index: 100;      /* Passe devant le reste */
+    flex-direction: column;
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border: 2px solid #DFAF2C;
+    z-index: 100;
 }
 
 .filter-menu-lateral h3 {
